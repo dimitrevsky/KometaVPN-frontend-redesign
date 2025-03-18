@@ -1,8 +1,11 @@
 <!-- род. компонент -->
 <template>
-  <div></div>
+  <HowThisWork />
 </template>
 
-<script setup></script>
+<script setup>
+import HowThisWork from './content/HowThisWork.vue';
+
+</script>
 
 <style lang="scss" scoped></style>
