@@ -1,9 +1,7 @@
 <template>
   <div class="flex-gap">
     <Title />
-    <main>
-      <Content />
-    </main>
+    <Content />
   </div>
 </template>
 
@@ -15,6 +13,6 @@ import Title from "~/components/Title.vue";
 .flex-gap {
   display: flex;
   flex-flow: column;
-  gap: calc(100px + 20dvw);
+  gap: calc(100px + 25dvw);
 }
 </style>

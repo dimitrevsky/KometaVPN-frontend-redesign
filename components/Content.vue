@@ -1,11 +1,20 @@
 <!-- род. компонент -->
 <template>
-  <HowThisWork />
+  <main>
+    <HowThisWork />
+    <ForInvestors />
+  </main>
 </template>
 
 <script setup>
-import HowThisWork from './content/HowThisWork.vue';
-
+import ForInvestors from "./content/ForInvestors.vue";
+import HowThisWork from "./content/HowThisWork.vue";
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+main {
+  display: flex;
+  flex-flow: column;
+  gap: 100px;
+}
+</style>

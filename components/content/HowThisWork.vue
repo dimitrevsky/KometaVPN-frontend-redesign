@@ -22,7 +22,7 @@
           <img :src="card.image" alt="cardPicture" />
         </div>
 
-        <div class="card__link--margin">
+        <div class="link--margin-top">
           <a href="">
             <p>{{ card.linkText }}</p>
             <img src="/chevron-right.svg" alt="chevronRight" />
@@ -89,10 +89,6 @@ section {
       }
     }
   }
-}
-
-.card__link--margin {
-  margin-top: auto;
 }
 
 .card__img {
