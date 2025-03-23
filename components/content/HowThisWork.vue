@@ -1,15 +1,100 @@
+<script setup>
+import { onMounted, ref } from "vue";
+import gsap from "gsap";
+import { animateCards } from "~/utils/fade-in-animation.js";
+
+const dataHowThisWork = [
+  {
+    subtitle: "Стань клиентом",
+    description: "Устанавливай наше расширение для браузера,<br />и просто пользуйся!",
+    linkText: "Скачать расширение",
+    image: "/img/PhonePicture.svg",
+  },
+  {
+    subtitle: "Или поставщиком",
+    description:
+      "Или предоставляй свои сервера нам,<br /> устанавливаешь наше ПО и всё,<br /> а мы будем платить тебе за трафик!",
+    linkText: "Стать поставщиком",
+    image: "/img/MonkPicture.svg",
+  },
+];
+
+const title = ref(null);
+const paragraph = ref(null);
+
+const cards = ref([]);
+
+function animateTitle(element) {
+  const text = element.innerText;
+  element.innerHTML = "";
+  text.split("").forEach((letter) => {
+    const span = document.createElement("span");
+    span.innerText = letter;
+    element.appendChild(span);
+  });
+
+  const letters = element.querySelectorAll("span");
+
+  gsap.fromTo(
+    letters,
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+      stagger: 0.07,
+      duration: 1,
+      ease: "back.out",
+    }
+  );
+}
+
+function animateParagraph(element) {
+  const text = element.innerText;
+  element.innerHTML = "";
+  text.split("").forEach((letter) => {
+    const span = document.createElement("span");
+    span.innerText = letter;
+    element.appendChild(span);
+  });
+
+  const letters = element.querySelectorAll("span");
+
+  gsap.fromTo(
+    letters,
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+      stagger: 0.05,
+      duration: 0.3,
+      ease: "power1.out",
+    }
+  );
+}
+
+onMounted(() => {
+  animateTitle(title.value);
+  animateParagraph(paragraph.value);
+  animateCards(cards.value, { stagger: 0.2, duration: 0.8, ease: "power2.out" });
+});
+</script>
+
 <template>
   <section>
     <div class="card__title--transparent">
-      <h1>Как это работает?</h1>
-      <p>
-        Kometa это децентрализованный VPN, <br />
-        где ты можешь быть как пользователем, <br />
-        так и провайдером.
+      <h1 ref="title">Как это работает?</h1>
+      <p ref="paragraph">
+        Kometa это децентрализованный VPN,<br />где ты можешь быть как пользователем,<br />так и провайдером.
       </p>
     </div>
-    <div class="card__title--border--wrapper" v-for="card in dataHowThisWork" :key="card.subtitle">
-      <div class="card__title--border">
+    <div
+      class="how-this-work__wrapper card__title--border--wrapper"
+      v-for="card in dataHowThisWork"
+      :key="card.subtitle"
+    >
+      <div class="how-this-work__title-wrapper card__title--border" ref="cards">
         <div>
           <h2>{{ card.subtitle }}</h2>
         </div>
@@ -18,7 +103,7 @@
           <p v-html="card.description"></p>
         </div>
 
-        <div class="card__img">
+        <div class="how-this-work__card-img">
           <img :src="card.image" alt="cardPicture" />
         </div>
 
@@ -33,23 +118,6 @@
   </section>
 </template>
 
-<script setup>
-const dataHowThisWork = [
-  {
-    subtitle: "Стань клиентом",
-    description: "Устанавливай наше расширение для браузера,<br />и просто пользуйся!",
-    linkText: "Скачать расширение",
-    image: "/img/PhonePicture.png",
-  },
-  {
-    subtitle: "Или поставщиком",
-    description:
-      "Или предоставляй свои сервера нам,<br /> устанавливаешь наше ПО и всё,<br /> а мы будем платить тебе за трафик!",
-    linkText: "Стать поставщиком",
-    image: "/img/MonkPicture.png",
-  },
-];
-</script>
 <style scoped>
 section {
   display: grid;
@@ -74,10 +142,21 @@ section {
   }
 }
 
-.card__title--border--wrapper {
+.how-this-work__wrapper {
   position: relative;
 
-  .card__title--border {
+  .how-this-work__card-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    @media (width <= 600px) {
+      position: relative;
+      width: 200px;
+    }
+  }
+
+  .how-this-work__title-wrapper {
     &:nth-child(1) {
       grid-area: 2 / 1 / 2 / 2;
       @media (width <= 1440px) {
@@ -88,17 +167,6 @@ section {
       @media (width <= 1440px) {
       }
     }
-  }
-}
-
-.card__img {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 100;
-  @media (width <= 600px) {
-    position: relative;
-    width: 200px;
   }
 }
 </style>

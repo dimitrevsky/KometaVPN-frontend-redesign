@@ -1,15 +1,14 @@
-<!-- род. компонент -->
+<script setup>
+import ForInvestors from "./content/ForInvestors.vue";
+import HowThisWork from "./content/HowThisWork.vue";
+</script>
+
 <template>
   <main>
     <HowThisWork />
     <ForInvestors />
   </main>
 </template>
-
-<script setup>
-import ForInvestors from "./content/ForInvestors.vue";
-import HowThisWork from "./content/HowThisWork.vue";
-</script>
 
 <style scoped>
 main {
