@@ -3,7 +3,7 @@ import Title from "~/components/Title.vue";
 </script>
 
 <template>
-  <!-- <Title /> -->
+  <Title />
   <Content />
 </template>
 
