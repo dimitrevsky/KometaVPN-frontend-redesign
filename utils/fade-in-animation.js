@@ -1,14 +1,19 @@
-import gsap from "gsap"
+import { gsap } from "gsap";
 
-export const animateCards = (cards, options = {}) => {
-  gsap.fromTo(cards, 
-    { opacity: 0, y: 80 },
+export function animateCards(elements, options = {}) {
+  if (!elements || !elements.length) return;
+
+  const { stagger = 0.2, duration = 0.8, ease = "power2.out" } = options;
+
+  gsap.fromTo(
+    elements,
+    { opacity: 0, y: 100 },
     {
       opacity: 1,
       y: 0,
-      stagger: options.stagger || 0.2,
-      duration: options.duration || 0.8,
-      ease: options.ease || "power2.out"
+      stagger,
+      duration,
+      ease,
     }
-  )
+  );
 }

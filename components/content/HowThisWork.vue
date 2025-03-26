@@ -27,15 +27,19 @@ const dataHowThisWork = [
 function animateTitle(element) {
   if (!element) return;
 
+  element.style.opacity = 0;
+
   const text = element.innerText;
   element.innerHTML = "";
 
   text.split("").forEach((letter) => {
     const span = document.createElement("span");
-    span.style.opacity = "0";
+    span.style.opacity = 0;
     span.innerText = letter;
     element.appendChild(span);
   });
+
+  gsap.to(element, { opacity: 1, duration: 0 });
 
   gsap.to(element.querySelectorAll("span"), {
     opacity: 1,
@@ -48,15 +52,19 @@ function animateTitle(element) {
 function animateParagraph(element) {
   if (!element) return;
 
+  element.style.opacity = 0;
+
   const text = element.innerText;
   element.innerHTML = "";
 
   text.split("").forEach((letter) => {
     const span = document.createElement("span");
-    span.style.opacity = "0";
+    span.style.opacity = 0;
     span.innerText = letter;
     element.appendChild(span);
   });
+
+  gsap.to(element, { opacity: 1, duration: 0 });
 
   gsap.to(element.querySelectorAll("span"), {
     opacity: 1,
@@ -67,8 +75,12 @@ function animateParagraph(element) {
 }
 
 onMounted(() => {
-  useIntersectionAnimation(title, () => animateTitle(title.value));
-  useIntersectionAnimation(paragraph, () => animateParagraph(paragraph.value));
+  if (cards.value.length) {
+    gsap.set(cards.value, { opacity: 0, y: 100 });
+  }
+
+  useIntersectionAnimation(title, animateTitle);
+  useIntersectionAnimation(paragraph, animateParagraph);
   useIntersectionAnimation(cards, () => animateCards(cards.value));
 });
 </script>

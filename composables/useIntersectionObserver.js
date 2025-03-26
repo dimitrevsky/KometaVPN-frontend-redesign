@@ -9,6 +9,6 @@ export const useIntersectionAnimation = (elementRef, animationCallback) => {
         stop()
       }
     },
-    { threshold: 0 }
+    { threshold: 0.1 }
   )
 }
