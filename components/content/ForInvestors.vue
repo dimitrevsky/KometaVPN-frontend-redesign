@@ -1,11 +1,53 @@
+<script setup>
+import { ref, onMounted } from "vue";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const text = ref(null);
+const video = ref(null);
+
+function setupAnimations(element) {
+  if (!element) return;
+
+  gsap.fromTo(
+    element,
+    { opacity: 0, y: 120 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: element,
+        start: "top 100%",
+        once: true,
+      },
+    }
+  );
+}
+
+onMounted(() => {
+  setupAnimations(text.value);
+  setupAnimations(video.value);
+});
+</script>
+
 <template>
   <section class="investors">
     <div class="investors__content card__title--transparent">
-      <h1 class="investors__title">Для инвесторов</h1>
-      <p class="investors__description">Если вы инвестор и заинтересованы в&nbsp;сотрудничестве с нами, то свяжитесь</p>
+      <div ref="text" class="investors__content--text">
+        <h1 class="investors__title">Для инвесторов</h1>
+        <p class="investors__description">
+          Если вы инвестор и заинтересованы в&nbsp;сотрудничестве с нами, то свяжитесь
+        </p>
+      </div>
 
-      <div class="investors__image">
-        <img src="/img/ManPicture.svg" alt="Инвестор" />
+      <div ref="video" class="investors__image">
+        <video autoplay loop muted playsinline width="100%">
+          <source src="public/video/ManVideo.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <div class="investors__link link--margin-top">
@@ -28,6 +70,12 @@
   @media (width <= 966px) {
     flex-flow: column;
   }
+}
+
+.investors__content--text {
+  display: flex;
+  gap: 24px;
+  flex-flow: column;
 }
 
 .investors__description {

@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import gsap from "gsap";
-import { animateCards } from "~/utils/fade-in-animation";
-import { useIntersectionAnimation } from "~/composables/useIntersectionObserver";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const title = ref(null);
 const paragraph = ref(null);
@@ -24,64 +25,87 @@ const dataHowThisWork = [
   },
 ];
 
-function animateTitle(element) {
-  if (!element) return;
-
-  element.style.opacity = 0;
-
+function setupTitleAnimation(element) {
   const text = element.innerText;
   element.innerHTML = "";
 
   text.split("").forEach((letter) => {
     const span = document.createElement("span");
-    span.style.opacity = 0;
     span.innerText = letter;
     element.appendChild(span);
   });
 
-  gsap.to(element, { opacity: 1, duration: 0 });
+  const spans = element.querySelectorAll("span");
 
-  gsap.to(element.querySelectorAll("span"), {
-    opacity: 1,
-    stagger: 0.07,
-    duration: 1,
-    ease: "back.out",
-  });
+  gsap.fromTo(
+    spans,
+    { opacity: 0 },
+    {
+      opacity: 1,
+      stagger: 0.07,
+      duration: 1,
+      ease: "back.out",
+      scrollTrigger: {
+        trigger: element,
+        start: "top 80%",
+        once: true,
+      },
+    }
+  );
 }
 
-function animateParagraph(element) {
-  if (!element) return;
-
-  element.style.opacity = 0;
-
+function setupParagraphAnimation(element) {
   const text = element.innerText;
   element.innerHTML = "";
 
   text.split("").forEach((letter) => {
     const span = document.createElement("span");
-    span.style.opacity = 0;
     span.innerText = letter;
     element.appendChild(span);
   });
 
-  gsap.to(element, { opacity: 1, duration: 0 });
+  const spans = element.querySelectorAll("span");
 
-  gsap.to(element.querySelectorAll("span"), {
-    opacity: 1,
-    stagger: 0.05,
-    duration: 0.5,
-    ease: "power1.out",
-  });
+  gsap.fromTo(
+    spans,
+    { opacity: 0 },
+    {
+      opacity: 1,
+      stagger: 0.05,
+      duration: 0.5,
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: element,
+        start: "top 90%",
+        once: true,
+      },
+    }
+  );
+}
+
+function setupCardsAnimation(cardElements) {
+  gsap.fromTo(
+    cardElements,
+    { opacity: 0, y: 120 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "back.out",
+      scrollTrigger: {
+        trigger: cardElements[0].parentElement,
+        start: "top 90%",
+        once: true,
+      },
+    }
+  );
 }
 
 onMounted(() => {
-  if (cards.value.length) {
-    gsap.set(cards.value, { opacity: 0, y: 100 });
-  }
-
-  useIntersectionAnimation(title, animateTitle);
-  useIntersectionAnimation(paragraph, animateParagraph);
-  useIntersectionAnimation(cards, () => animateCards(cards.value));
+  setupTitleAnimation(title.value);
+  setupParagraphAnimation(paragraph.value);
+  setupCardsAnimation(cards.value);
 });
 </script>
 
