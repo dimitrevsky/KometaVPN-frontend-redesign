@@ -18,10 +18,10 @@ function setupAnimations(element) {
       opacity: 1,
       y: 0,
       duration: 0.8,
-      ease: "power2.out",
+      ease: "expo",
       scrollTrigger: {
         trigger: element,
-        start: "top 100%",
+        start: "top 90%",
         once: true,
       },
     }
@@ -45,7 +45,7 @@ onMounted(() => {
       </div>
 
       <div ref="video" class="investors__image">
-        <video autoplay loop muted playsinline width="100%">
+        <video autoplay loop muted playsinline width="100%" height="auto">
           <source src="public/video/ManVideo.mp4" type="video/mp4" />
         </video>
       </div>
@@ -65,11 +65,7 @@ onMounted(() => {
   position: relative;
   display: flex;
   justify-content: space-between;
-  height: 391px;
-
-  @media (width <= 966px) {
-    flex-flow: column;
-  }
+  min-height: 391px;
 }
 
 .investors__content--text {

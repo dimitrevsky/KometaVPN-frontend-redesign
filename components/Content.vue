@@ -1,19 +1,11 @@
 <script setup>
 import ForInvestors from "./content/ForInvestors.vue";
-import HowThisWork from "./content/HowThisWork.vue";
+import HowThisWorks from "./content/HowThisWork.vue";
+import WhyKometaVPN from "./content/WhyKometaVPN.vue";
 </script>
 
 <template>
-  <main>
-    <HowThisWork />
-    <ForInvestors />
-  </main>
+  <HowThisWorks />
+  <ForInvestors />
+  <WhyKometaVPN />
 </template>
-
-<style scoped>
-main {
-  display: flex;
-  flex-flow: column;
-  gap: 100px;
-}
-</style>

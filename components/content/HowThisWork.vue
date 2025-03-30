@@ -44,7 +44,7 @@ function setupTitleAnimation(element) {
       opacity: 1,
       stagger: 0.07,
       duration: 1,
-      ease: "back.out",
+      ease: "expo.out",
       scrollTrigger: {
         trigger: element,
         start: "top 80%",
@@ -73,7 +73,7 @@ function setupParagraphAnimation(element) {
       opacity: 1,
       stagger: 0.05,
       duration: 0.5,
-      ease: "power1.out",
+      ease: "expo.out",
       scrollTrigger: {
         trigger: element,
         start: "top 90%",
@@ -92,9 +92,9 @@ function setupCardsAnimation(cardElements) {
       y: 0,
       duration: 0.6,
       stagger: 0.2,
-      ease: "back.out",
+      ease: "expo",
       scrollTrigger: {
-        trigger: cardElements[0].parentElement,
+        trigger: cardElements[0],
         start: "top 90%",
         once: true,
       },
