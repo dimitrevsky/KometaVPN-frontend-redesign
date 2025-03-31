@@ -18,7 +18,7 @@ function setupCardAnimation(cardElements) {
       stagger: 0.2,
       ease: "expo.out",
       scrollTrigger: {
-        trigger: cardElements,
+        trigger: ".options--wrapper",
         start: "top 80%",
         once: true,
       },
@@ -66,10 +66,14 @@ const cardData = [
 
     <div class="options--wrapper">
       <div
-        v-for="card in cardData"
+        v-for="(card, index) in cardData"
         :key="card.title"
         class="card__title--border options--card"
-        :ref="(el) => (cards[index] = el)"
+        :ref="
+          (el) => {
+            if (el) cardRefs[index] = el;
+          }
+        "
       >
         <div class="options--text-wrapper">
           <h2>{{ card.title }}</h2>
