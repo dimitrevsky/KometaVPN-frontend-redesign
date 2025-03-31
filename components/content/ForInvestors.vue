@@ -9,8 +9,6 @@ const text = ref(null);
 const video = ref(null);
 
 function setupAnimations(element) {
-  if (!element) return;
-
   gsap.fromTo(
     element,
     { opacity: 0, y: 120 },
