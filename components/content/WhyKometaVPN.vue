@@ -65,7 +65,7 @@ const cardData = [
     </div>
 
     <div class="options--wrapper">
-      <div v-for="card in cardData" :key="card.title" class="card__title--border options--card" ref="card">
+      <div v-for="card in cardData" :key="card.title" class="card__title--border options--card" :ref="(el) => (cards[index] = el)">
         <div class="options--text-wrapper">
           <h2>{{ card.title }}</h2>
           <p>{{ card.description }}</p>
