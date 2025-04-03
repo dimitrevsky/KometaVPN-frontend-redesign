@@ -13,5 +13,10 @@
   justify-content: center;
   max-width: 100dvw;
   height: 100dvh;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 </style>

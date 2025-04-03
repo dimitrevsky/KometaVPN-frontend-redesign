@@ -103,8 +103,8 @@ function setupCardsAnimation(cardElements) {
 }
 
 onMounted(() => {
-  setupTitleAnimation(title.value);
   setupParagraphAnimation(paragraph.value);
+  setupTitleAnimation(title.value);
   setupCardsAnimation(cards.value);
 });
 </script>

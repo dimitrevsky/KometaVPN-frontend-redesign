@@ -7,13 +7,15 @@
 
 :root {
   --bg-color--body: #000;
+  --bg-color--button: #F0F0F0;
   --border-color: #444444;
   --link-color: #5197ff;
   --text-color: #fff;
   --fz-title: calc(36px + (12 + 12 * 0.7) * ((100vw - 360px) / 1920));
   --fz-subtitle: calc(24px + (8 + 8 * 0.7) * ((100vw - 360px) / 1920));
   --fz-text: 18px;
-  --fz-card-text: 16px;
+  --fz-text-card: 16px;
+
 
   --link-card-style {
     display: flex;
@@ -54,11 +56,9 @@ p {
   line-height: 150%;
   max-width: max-content;
   letter-spacing: -0.02em;
-
 }
 
 img {
-  width: 100%;
   height: auto;
   user-select: none;
   -webkit-user-drag: none;
@@ -87,6 +87,22 @@ img {
 
   a {
     @apply --link-card-style;
+  }
+}
+
+.card--text-wrapper {
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+
+  h2 {
+    font-size: var(--fz-subtitle);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    font-size: var(--fz-text-card);
   }
 }
 

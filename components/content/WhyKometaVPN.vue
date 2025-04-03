@@ -66,16 +66,12 @@ const cardData = [
 
     <div class="options--wrapper">
       <div
+        class="card__title--border options--card"
         v-for="(card, index) in cardData"
         :key="card.title"
-        class="card__title--border options--card"
-        :ref="
-          (el) => {
-            if (el) cardRefs[index] = el;
-          }
-        "
+        :ref="(el) => (cardRefs[index] = el)"
       >
-        <div class="options--text-wrapper">
+        <div class="card--text-wrapper">
           <h2>{{ card.title }}</h2>
           <p>{{ card.description }}</p>
         </div>
@@ -121,18 +117,6 @@ const cardData = [
     }
   }
 
-  .options--text-wrapper {
-    display: flex;
-    flex-flow: column;
-    gap: 20px;
 
-    h2 {
-      font-size: var(--fz-subtitle);
-    }
-
-    p {
-      font-size: var(--fz-card-text);
-    }
-  }
 }
 </style>
