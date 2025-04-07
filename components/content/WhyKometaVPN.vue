@@ -19,7 +19,7 @@ function setupCardAnimation(cardElements) {
       ease: "expo.out",
       scrollTrigger: {
         trigger: ".options--wrapper",
-        start: "top 80%",
+        start: "top 70%",
         once: true,
       },
     }
@@ -116,7 +116,5 @@ const cardData = [
       width: 146px;
     }
   }
-
-
 }
 </style>

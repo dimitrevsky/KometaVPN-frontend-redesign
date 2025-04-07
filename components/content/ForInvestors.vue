@@ -19,7 +19,7 @@ function setupAnimations(element) {
       ease: "expo",
       scrollTrigger: {
         trigger: element,
-        start: "top 90%",
+        start: "top 70%",
         once: true,
       },
     }

@@ -6,14 +6,14 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const imgRefs = ref([]);
+const imgRef = ref([]);
 
 const setImageRef = (el) => {
-  imgRefs.value.push(el);
+  imgRef.value.push(el);
 };
 
 function animateImages() {
-  imgRefs.value.forEach((img, index) => {
+  imgRef.value.forEach((img, index) => {
     gsap.fromTo(
       img,
       {
@@ -28,7 +28,7 @@ function animateImages() {
         ease: "back.out",
         scrollTrigger: {
           trigger: ".extansion__card-imgs",
-          start: "top 90%",
+          start: "top 70%",
           once: true,
         },
       }
@@ -128,6 +128,7 @@ onMounted(() => {
 .extansion--wrapper {
   display: flex;
   flex-flow: column;
+  
   gap: 48px;
 
   .extansion__card-imgs {
@@ -144,6 +145,8 @@ onMounted(() => {
 
     .image-carousel {
       position: absolute;
+      border-radius: 24px;
+
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

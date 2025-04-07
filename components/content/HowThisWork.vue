@@ -76,16 +76,20 @@ function setupParagraphAnimation(element) {
       ease: "expo.out",
       scrollTrigger: {
         trigger: element,
-        start: "top 90%",
+        start: "top 70%",
         once: true,
       },
     }
   );
 }
 
-function setupCardsAnimation(cardElements) {
+const setCardRef = (el) => {
+  cards.value.push(el);
+};
+
+function setupCardsAnimation() {
   gsap.fromTo(
-    cardElements,
+    cards.value,
     { opacity: 0, y: 120 },
     {
       opacity: 1,
@@ -94,7 +98,7 @@ function setupCardsAnimation(cardElements) {
       stagger: 0.2,
       ease: "expo",
       scrollTrigger: {
-        trigger: cardElements[0],
+        trigger: cards.value[0],
         start: "top 90%",
         once: true,
       },
@@ -105,7 +109,7 @@ function setupCardsAnimation(cardElements) {
 onMounted(() => {
   setupParagraphAnimation(paragraph.value);
   setupTitleAnimation(title.value);
-  setupCardsAnimation(cards.value);
+  setupCardsAnimation();
 });
 </script>
 
@@ -120,7 +124,7 @@ onMounted(() => {
       v-for="(card, index) in dataHowThisWork"
       :key="card.subtitle"
     >
-      <div class="how-this-work__title-wrapper card__title--border" :ref="(el) => (cards[index] = el)">
+      <div class="how-this-work__title-wrapper card__title--border" :ref="setCardRef">
         <div>
           <h2>{{ card.subtitle }}</h2>
         </div>
@@ -140,6 +144,7 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
 <style scoped>
 section {
   display: grid;

@@ -11,8 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 100dvw;
-  height: 100dvh;
+  max-width: 100vw;
+  height: 100vh;
 
   img {
     width: 100%;

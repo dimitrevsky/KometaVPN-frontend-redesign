@@ -1,5 +1,6 @@
 <script setup>
 import Content from "~/components/Content.vue";
+import Footer from "~/components/content/Footer.vue";
 import Title from "~/components/Title.vue";
 </script>
 
@@ -8,6 +9,7 @@ import Title from "~/components/Title.vue";
     <Title />
     <Content />
   </main>
+  <Footer/>
 </template>
 
 <style scoped>
